@@ -1,0 +1,32 @@
+{
+  "name": "desweb2020-2",
+  "version": "1.0.0",
+  "description": "Classroom project from Desenvolvimento Web 2020.2 by teacher José Marques Soares from Federal University of Ceará.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/desweb.ufc.2020.2/desweb2020-2.git"
+  },
+  "keywords": [
+    "nodejs",
+    "html",
+    "css",
+    "docker",
+    "gitlab"
+  ],
+  "author": "Lucas Costa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/desweb.ufc.2020.2/desweb2020-2/issues"
+  },
+  "homepage": "https://gitlab.com/desweb.ufc.2020.2/desweb2020-2#readme",
+  "devDependencies": {
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "23.20.0"
+  }
+}
