@@ -1,0 +1,17 @@
+version: "2.2"
+
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    command: npm start
+    ports: 
+      - "8080:8080"
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+
+volumes:
+  esdata1:
+    driver: local
