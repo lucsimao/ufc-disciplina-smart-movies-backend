@@ -1,3 +1,21 @@
-job:
-    script:
-    - echo "hello world"
+image: node:latest
+
+stages:
+  - build
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: build
+  script:
+    - npm install
+  cache:
+    paths:
+      - node_modules/
+
+test:
+  stage: test
+  script: npm test
