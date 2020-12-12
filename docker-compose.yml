@@ -6,11 +6,20 @@ services:
     env_file:
       - .env
     command: npm start
-    ports: 
+    ports:
       - "8080:8080"
     volumes:
       - .:/usr/app
       - /usr/app/node_modules
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+    ports:
+      - "3306:3306"
 
 volumes:
   esdata1:
