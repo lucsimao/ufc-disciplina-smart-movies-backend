@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `desweb-moviedatabase` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `desweb-moviedatabase`;
+CREATE DATABASE  IF NOT EXISTS `desweb-database` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `desweb-database`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: desweb-moviedatabase
+-- Host: 127.0.0.1    Database: desweb-database
 -- ------------------------------------------------------
 -- Server version	8.0.22
 
@@ -128,18 +128,18 @@ where 1=1
 	AND r.id = NEW.room_id
 	AND (
 		s.start_time BETWEEN @start_time AND @end_time
-		OR 
+		OR
 		s.end_time BETWEEN @start_time AND @end_time
 	);
 
 IF (@number_of_conflicts > 1) THEN
 	SET @error_message = 'TimeError: You\'re trying to insert a session on an already taken date_time';
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @error_message;	
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @error_message;
 END IF;
 
 IF (@start_time >= @end_time) THEN
 	SET @error_message = 'TimeError: You\'re trying to insert a end_time greater than start_time';
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @error_message;	
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @error_message;
 END IF;
 
 END */;;

@@ -4,7 +4,7 @@ const {
   format,
 } = require('winston');
 
-const logger = createLogger({
+const Logger = createLogger({
   format: format.combine(format.timestamp(), format.json()),
   transports: [
     new transports.Console({
@@ -16,4 +16,4 @@ const logger = createLogger({
   ],
 });
 
-module.exports = logger;
+module.exports = Logger;
