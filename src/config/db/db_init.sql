@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `desweb-database` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `desweb-database`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: desweb-database
@@ -16,6 +14,58 @@ USE `desweb-database`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `admins`
+--
+
+DROP TABLE IF EXISTS `admins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `admins` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admins`
+--
+
+LOCK TABLES `admins` WRITE;
+/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `clients`
+--
+
+DROP TABLE IF EXISTS `clients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `clients` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clients`
+--
+
+LOCK TABLES `clients` WRITE;
+/*!40000 ALTER TABLE `clients` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clients` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `movies`
@@ -58,6 +108,7 @@ DROP TABLE IF EXISTS `rooms`;
 CREATE TABLE `rooms` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
+  `rooms_number` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -68,8 +119,40 @@ CREATE TABLE `rooms` (
 
 LOCK TABLES `rooms` WRITE;
 /*!40000 ALTER TABLE `rooms` DISABLE KEYS */;
-INSERT INTO `rooms` VALUES (1,'Sala 1'),(2,'Sala 2'),(3,'Sala 3'),(4,'Sala 4');
+INSERT INTO `rooms` VALUES (1,'Sala 1',0),(2,'Sala 2',0),(3,'Sala 3',0),(4,'Sala 4',0);
 /*!40000 ALTER TABLE `rooms` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `seats`
+--
+
+DROP TABLE IF EXISTS `seats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `seats` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `room_id` int DEFAULT NULL,
+  `session_id` int NOT NULL,
+  `column` varchar(5) NOT NULL,
+  `number` varchar(5) NOT NULL,
+  `status` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `session_fk_idx` (`session_id`),
+  KEY `room_fk_idx` (`room_id`),
+  CONSTRAINT `room_fk` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `session_fk` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='status: 0 -> free ; 1-> busy ; 2 -> blocked';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `seats`
+--
+
+LOCK TABLES `seats` WRITE;
+/*!40000 ALTER TABLE `seats` DISABLE KEYS */;
+/*!40000 ALTER TABLE `seats` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -102,52 +185,38 @@ LOCK TABLES `sessions` WRITE;
 INSERT INTO `sessions` VALUES (1,1,1,'2020-12-12 10:00:00','2020-12-12 12:00:00'),(2,1,1,'2020-12-12 13:00:00','2020-12-12 15:00:00'),(3,2,1,'2020-12-12 18:00:00','2020-12-12 20:00:00'),(4,3,1,'2020-12-12 21:00:00','2020-12-12 23:00:00'),(5,2,2,'2020-12-12 11:00:00','2020-12-12 13:00:00'),(6,2,2,'2020-12-12 14:00:00','2020-12-12 16:00:00'),(7,3,2,'2020-12-12 17:00:00','2020-12-12 19:00:00'),(8,4,2,'2020-12-12 20:00:00','2020-12-12 22:00:00'),(9,4,3,'2020-12-12 10:30:00','2020-12-12 12:30:00'),(10,1,3,'2020-12-12 13:30:00','2020-12-12 15:30:00'),(11,2,3,'2020-12-12 18:30:00','2020-12-12 20:30:00'),(12,1,1,'2020-12-12 10:00:00','2020-12-12 12:00:00');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `sessions_BEFORE_INSERT` BEFORE INSERT ON `sessions` FOR EACH ROW BEGIN
 
-SET @room_id = NEW.room_id;
-SET @movie_id = NEW.movie_id;
-SET @start_time = NEW.start_time;
-SET @end_time = NEW.end_time;
+--
+-- Table structure for table `tickets`
+--
 
-SELECT
-	count(*)
-INTO @number_of_conflicts
-FROM
-	rooms r
-		inner join sessions s on r.id = s.room_id
-where 1=1
-	AND r.id = NEW.room_id
-	AND (
-		s.start_time BETWEEN @start_time AND @end_time
-		OR
-		s.end_time BETWEEN @start_time AND @end_time
-	);
+DROP TABLE IF EXISTS `tickets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tickets` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `client_id` int NOT NULL,
+  `session_id` int NOT NULL,
+  `seat_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `session_fk_idx` (`session_id`),
+  KEY `client_fk_idx` (`client_id`),
+  KEY `seat_id_idx` (`seat_id`),
+  CONSTRAINT `client_fk` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`),
+  CONSTRAINT `seat_id` FOREIGN KEY (`seat_id`) REFERENCES `seats` (`id`),
+  CONSTRAINT `session_foreing` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-IF (@number_of_conflicts > 1) THEN
-	SET @error_message = 'TimeError: You\'re trying to insert a session on an already taken date_time';
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @error_message;
-END IF;
+--
+-- Dumping data for table `tickets`
+--
 
-IF (@start_time >= @end_time) THEN
-	SET @error_message = 'TimeError: You\'re trying to insert a end_time greater than start_time';
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = @error_message;
-END IF;
-
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
+LOCK TABLES `tickets` WRITE;
+/*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -158,4 +227,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-21 20:17:39
+-- Dump completed on 2021-03-06 11:25:44
