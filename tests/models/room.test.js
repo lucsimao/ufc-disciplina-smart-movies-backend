@@ -1,8 +1,8 @@
 const banco_de_dados = require('../../src/config/db/db-config');
 const logger = require('../../src/config/logger/logger');
-const Sala = require('../../src/models/Sala');
+const Room = require('../../src/models/room');
 
-describe('Sala Model', async () => {
+describe('Room Model', async () => {
 
   beforeAll(async () => {
     try {
@@ -24,11 +24,11 @@ describe('Sala Model', async () => {
     }
   });
 
-  test('deve criar uma sala valida', async () => {
-    const Sala = await Sala.create({
-      name: 'TEST-Sala-01',
+  test('deve criar uma Room valida', async () => {
+    const room = await Room.create({
+      name: 'TEST-Room-01',
     });
-    expect(Sala.name).toBe('TEST-Sala-01');
+    expect(room.name).toBe('TEST-Room-01');
   });
 
 });
