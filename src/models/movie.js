@@ -37,6 +37,7 @@ const Movie = database.define('movie', {
   release_date: {
     type: Sequelize.DATE,
   },
-});
+}
+);
 
 module.exports = Movie;
