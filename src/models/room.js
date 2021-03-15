@@ -12,6 +12,10 @@ const Room = database.define('room', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  rooms_number: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
 });
 
 module.exports = Room;

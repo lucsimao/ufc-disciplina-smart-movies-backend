@@ -1,4 +1,6 @@
 const Movie = require('../models/movie');
+const Session = require('../models/session');
+const Room = require('../models/room');
 
 module.exports = app => {
   app.get('/movie', async (req, res) => {
@@ -6,6 +8,25 @@ module.exports = app => {
       const movies = await Movie.findAll();
       res.status(200).json(movies);
     }catch(err){
+      res.status(400).json(err);
+    }
+  });
+
+  app.get('/landing-page-movies', async (req, res) => {
+    try{
+
+      const movies = await Movie.findAll({
+        include: [{
+          model: Room,
+          include: [{
+            model: Session
+          }],
+        }]
+      });
+
+      res.status(200).json(movies);
+    }catch(err){
+      console.log(err);
       res.status(400).json(err);
     }
   });
