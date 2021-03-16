@@ -1,26 +1,22 @@
 const Sequelize = require('sequelize');
 const database = require('../config/db/db-config');
 
-const Client = database.define('client', {
+const Token = database.define('token', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
   },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
   email: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  password: {
-    type: Sequelize.NUMBER,
+  token: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
 }
 );
 
-module.exports = Client;
+module.exports = Token;
