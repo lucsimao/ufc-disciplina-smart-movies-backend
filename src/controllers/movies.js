@@ -72,7 +72,7 @@ module.exports = app => {
     }
   });
 
-  app.patch('/movie/:id', async (req, res) => {
+  app.put('/movie/:id', async (req, res) => {
     const id = parseInt(req.params.id);
     const movie = req.body;
     try{
