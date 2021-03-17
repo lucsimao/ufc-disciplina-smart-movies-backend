@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `desweb-database` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `desweb-database`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: desweb-database
