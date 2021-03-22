@@ -7,6 +7,7 @@ const Session = database.define('session', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
+    allowNull: false,
     primaryKey: true
   },
   movie_id: {
