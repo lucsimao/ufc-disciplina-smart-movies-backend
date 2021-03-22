@@ -3,10 +3,12 @@ const {
   transports,
   format,
 } = require('winston');
+const esTransportOpts = require('./transports/es-transport');
 
-const Logger = createLogger({
+const logger = createLogger({
   format: format.combine(format.timestamp(), format.json()),
   transports: [
+    esTransportOpts,
     new transports.Console({
       format: format.combine(
         format.colorize(),
@@ -16,4 +18,4 @@ const Logger = createLogger({
   ],
 });
 
-module.exports = Logger;
+module.exports = logger;
