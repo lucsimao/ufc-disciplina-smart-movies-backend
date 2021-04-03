@@ -9,7 +9,7 @@ module.exports = app => {
 
   applyClientAuthMiddleware(app);
 
-  applyGetRoute(app, Room, 'movie');
+  applyGetRoute(app, Movie, 'movie');
 
   app.get('/landing-page-movies', async (req, res) => {
     try{

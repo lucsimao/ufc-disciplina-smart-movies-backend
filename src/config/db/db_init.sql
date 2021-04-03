@@ -63,7 +63,6 @@ CREATE TABLE `clients` (
 
 --
 -- Dumping data for table `clients`
-<<<<<<< HEAD
 --
 
 LOCK TABLES `clients` WRITE;
@@ -270,8 +269,6 @@ UNLOCK TABLES;
 
 --
 -- Dumping events for database 'desweb-database'
-=======
->>>>>>> ea0a0d8d2fe15e18fc478eaff6f2096bc32890d1
 --
 
 LOCK TABLES `clients` WRITE;
@@ -439,8 +436,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD
 -- Dump completed on 2021-03-21 23:11:03
-=======
--- Dump completed on 2021-03-06 11:25:44
->>>>>>> ea0a0d8d2fe15e18fc478eaff6f2096bc32890d1
