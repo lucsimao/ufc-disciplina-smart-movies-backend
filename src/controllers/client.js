@@ -5,11 +5,11 @@ module.exports = app => {
 
   const routeName = 'client';
 
+  applyPostMethod(app, Client, routeName);
+
   applyAdminAuthMiddleware(app);
 
   applyGetRoute(app, Client, routeName);
-
-  applyPostMethod(app, Client, routeName);
 
   applyPutMethod(app, Client, routeName);
 

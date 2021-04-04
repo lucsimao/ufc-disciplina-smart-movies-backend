@@ -1,14 +1,13 @@
 # Federal University of Ceará
 # Desenvolvimento Web 2020.2
 ## Teacher:  José Marques Soares
-##### Team: Lucas Costa, Mateus Landim
+##### Team: Lucas Costa, Mateus Landim, Ramiro Campos
 
-This project is a work from classroom Desenvolvimento Web 2020.2.
-It will show mas and must have following features:
+Este projeto é um trabalho para a disciplina de Desenvolvimento Web 2020.2.
+Trabalho é composto pelas seguintes features.
 
-- Search for movies in theaters using [OMDb Api](http://www.omdbapi.com)
-- Provide a set of views to search movies based on filters
-- Allow user to buy movies ticket
+- Buscar filmes na OMDb Api [OMDb Api](http://www.omdbapi.com)
+- Disponibilizar uma api para CRUD de filmes, salas e sessões
 
 # Sumário
 - [Requirements](#Requirements)
@@ -17,15 +16,15 @@ It will show mas and must have following features:
 - [Observations](#Observations)
 - [References](#References)
 
-# Requirements
+# Requisitos
 - [Node.js](https://nodejs.org/) >= 12.x (Opcional)
 - [Docker](https://www.docker.com/) >= 19.x
 - [Docker Compose](https://docs.docker.com/compose/) >= 1.26.x
 
-# Installation
+# Instalação
 ## Local
 
-To run node js in local environment, use:
+Para rodar nodejs localmente utilize:
 ```sh
 $ git clone https://gitlab.com/desweb.ufc.2020.2/desweb2020-2.git
 $ cd desweb2020-2
@@ -39,13 +38,32 @@ $ npm start
 ```
 
 ## Docker
-Clone docker repo, then run:
+Clone repo, então execute:
 ```sh
 $ git clone https://gitlab.com/desweb.ufc.2020.2/desweb2020-2.git
 $ cd desweb2020-2
 $ docker-compose up --build -d
 ```
 
+### Elastic Search
+Caso o elastic search não funcione no docker, uma configuração do max_map_count pode ser necessária conforme a página oficial do [ElasticSearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_set_vm_max_map_count_to_at_least_262144) recomenda.
+
+Para windows
+```sh
+wsl -d docker-desktop
+sysctl -w vm.max_map_count=262144
+```
+Para Linux
+```sh
+grep vm.max_map_count /etc/sysctl.conf
+vm.max_map_count=262144
+```
+
+Para MacOS ou Windows sem WSL
+```sh
+docker-machine ssh
+sudo sysctl -w vm.max_map_count=262144
+```
 ## Testes
 To run tests, you must have node installed in your environment then run:
 ```sh
@@ -62,7 +80,7 @@ To see generated logs on elasticsearch, visit: [Kibana](http://localhost:5601/ap
 OBS: Docker waits elastic search to be avaiable before start kibana, then maybe you must have to await some minutes before start kibana [iniciar o docker](#Docker).
 
 # Techs
-To this project development, it was utilized following techs, text editor and packages from [npm](https://www.npmjs.com/):
+Para o desenvolvimento deste projeto, foram utilizadas as seguintes tecnologias, editores e bibliotecas de [npm](https://www.npmjs.com/):
 
 * [Node.js](https://nodejs.org/)
 * [Visual Studio Code](https://code.visualstudio.com/)- text editor with the following plugins installed: [DotENV](https://github.com/mikestead/vscode-dotenv), [ESLint](https://github.com/Microsoft/vscode-eslint), [GitLens](https://github.com/eamodio/vscode-gitlens) e [vscode-icons](https://github.com/vscode-icons/vscode-icons).
