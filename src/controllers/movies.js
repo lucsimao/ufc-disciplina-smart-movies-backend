@@ -1,7 +1,7 @@
 const Movie = require('../models/movie');
 const Session = require('../models/session');
 const Room = require('../models/room');
-const { applyGetRoute, applyClientAuthMiddleware, applyAdminAuthMiddleware, applyPostMethod, applyPutMethod, applyDeleteMethod } = require('../services/restHelper');
+const { applyGetRoute, applyClientAuthMiddleware, applyPostMethod, applyPutMethod, applyDeleteMethod } = require('../services/restHelper');
 const logger = require('../config/logger/logger');
 
 

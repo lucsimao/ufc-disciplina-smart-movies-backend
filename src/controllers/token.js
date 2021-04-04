@@ -2,11 +2,10 @@ const Token = require('../models/token');
 
 module.exports = app => {
   app.get('/check', async (req, res) => {
-    const {email, token} = req.body;
-    
+
     try {
       const tokens = await Token.findAll();
-      res.status(200).json(clients);
+      res.status(200).json(tokens);
     } catch(err) {
       res.status(400).json(err);
     }
